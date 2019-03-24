@@ -4,7 +4,7 @@ class CreateContacts < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :title
       t.string :email
-      t.belongs_to :company, foreign_key: true
+      t.belongs_to :interview, foreign_key: true
 
       t.timestamps
     end

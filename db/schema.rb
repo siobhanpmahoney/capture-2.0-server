@@ -50,19 +50,10 @@ ActiveRecord::Schema.define(version: 2019_03_24_164409) do
     t.string "name"
     t.string "title"
     t.string "email"
-    t.bigint "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_contacts_on_company_id"
-  end
-
-  create_table "interview_contacts", force: :cascade do |t|
     t.bigint "interview_id"
-    t.bigint "contact_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_interview_contacts_on_contact_id"
-    t.index ["interview_id"], name: "index_interview_contacts_on_interview_id"
+    t.index ["interview_id"], name: "index_contacts_on_interview_id"
   end
 
   create_table "interviews", force: :cascade do |t|
@@ -136,9 +127,7 @@ ActiveRecord::Schema.define(version: 2019_03_24_164409) do
 
   add_foreign_key "apps", "jobs"
   add_foreign_key "apps", "users"
-  add_foreign_key "contacts", "companies"
-  add_foreign_key "interview_contacts", "contacts"
-  add_foreign_key "interview_contacts", "interviews"
+  add_foreign_key "contacts", "interviews"
   add_foreign_key "interviews", "apps"
   add_foreign_key "jobs", "companies"
   add_foreign_key "tag_articles", "articles"
