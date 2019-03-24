@@ -42,6 +42,6 @@ class Api::V1::CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name. :description, :locations, :industries, :twitter, :muse_id, job_ids: [])
+    params.require(:company).permit(:name. :description, :size, :locations, :industries, :twitter, :muse_id, job_ids: [])
   end
 end

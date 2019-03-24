@@ -7,6 +7,7 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :industries
       t.string :twitter
       t.string :muse_id
+      t.string :size
 
       t.timestamps
     end

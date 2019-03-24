@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2019_03_24_164409) do
     t.string "industries"
     t.string "twitter"
     t.string "muse_id"
+    t.string "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
