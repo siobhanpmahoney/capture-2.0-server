@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(version: 2019_03_24_164409) do
     t.string "link"
     t.string "title"
     t.datetime "publication_date"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -85,8 +87,10 @@ ActiveRecord::Schema.define(version: 2019_03_24_164409) do
   create_table "notes", force: :cascade do |t|
     t.text "content"
     t.string "title"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "tag_articles", force: :cascade do |t|
@@ -128,9 +132,11 @@ ActiveRecord::Schema.define(version: 2019_03_24_164409) do
 
   add_foreign_key "apps", "jobs"
   add_foreign_key "apps", "users"
+  add_foreign_key "articles", "users"
   add_foreign_key "contacts", "interviews"
   add_foreign_key "interviews", "apps"
   add_foreign_key "jobs", "companies"
+  add_foreign_key "notes", "users"
   add_foreign_key "tag_articles", "articles"
   add_foreign_key "tag_articles", "tags"
   add_foreign_key "tag_notes", "notes"

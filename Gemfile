@@ -19,6 +19,8 @@ gem 'rest-client'
 gem 'active_model_serializers'
 gem 'faker'
 gem 'json'
+gem 'fast_jsonapi'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

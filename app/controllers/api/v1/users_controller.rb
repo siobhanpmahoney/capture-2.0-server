@@ -14,9 +14,9 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: {error:"Error, User not saved"}, status: :unauthorized
     end
-  else
-    @user = User.find_by(username: user_params["username"])
-    render json: @user, status: 201
+  # else
+  #   @user = User.find_by(username: user_params["username"])
+  #   render json: @user, status: 201
     # render json: {user: @user, token: @token}, serialzer: UserSerializer, status: 201
 
   end
@@ -25,7 +25,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: @user, status: :ok
+    render json: UserSerializer.new(@user), status: :ok
   end
 
 
@@ -50,6 +50,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation, tag_ids: [], app_ids: [])
+    params.require(:user).permit(:username, :password, :password_confirmation, tag_ids: [], app_ids: [], note_ids: [], article_ids: [])
   end
 end

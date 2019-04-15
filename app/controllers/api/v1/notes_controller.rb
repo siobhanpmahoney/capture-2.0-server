@@ -42,6 +42,6 @@ class Api::V1::NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:title, :content, tags: [])
+    params.require(:note).permit(:title, :content, tag_ids: [])
   end
 end
