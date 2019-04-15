@@ -20,6 +20,7 @@ gem 'active_model_serializers'
 gem 'faker'
 gem 'json'
 gem 'fast_jsonapi'
+gem 'jwt'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

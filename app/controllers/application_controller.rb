@@ -52,7 +52,8 @@ def auth_header
 
 
   def secret
-    Rails.application.secrets.secret_key_base # replaced 'placeholder' with actual secret key
+    # Rails.application.secrets.secret_key_base # replaced 'placeholder' with actual secret key
+    Rails.application.credentials[:secret_key_base]
   end
 
 
