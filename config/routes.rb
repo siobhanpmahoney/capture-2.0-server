@@ -16,8 +16,9 @@ Rails.application.routes.draw do
       resources :jobs
       resources :users
 
-      post '/login', to: 'auth#login'
-      get '/current_user', to: 'auth#currentUser'
+      post '/login', to: 'auth#create'
+      get '/profile', to: 'users#profile'
+      # get '/current_user', to: 'auth#currentUser'
       post '/signup', to: 'auth#signup'
     end
   end
