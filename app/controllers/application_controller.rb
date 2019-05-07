@@ -46,7 +46,9 @@ class ApplicationController < ActionController::API
   # called by User#profile
   def current_user
     if decoded_token
-      user_id = User.find_by(id: user_id)
+      # user_id = User.find_by(id: user_id)
+      User.find_by(id: decoded_token[0]["user_id"])
+
     end
   end
 

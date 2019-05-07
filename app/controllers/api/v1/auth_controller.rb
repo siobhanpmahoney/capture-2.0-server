@@ -3,11 +3,12 @@ class Api::V1::AuthController < ApplicationController
   require 'securerandom'
 
   def create
-    @user = User.find_by(user_params) # returns either user instance OR nil
+    @user = User.find_by(username: params[:user][:username]) # returns either user instance OR nil
     if @user && @user.authenticate(user_params[:password]) #@user.#authenticate comes from BCrypt
       @token = encode_token({user_id: @user.id})
-      UserSerializer.show({user: @user, jwt: @token})
-      # render json: {user: UserSerializer.new(@user), jwt: @token}, status: :accepted
+      # UserSerializer.show({user: @user, jwt: @token})
+      render json: {user: UserSerializer.new(@user), jwt: @token}, status: :accepted
+
     else
       render json: {message: 'Invalid username or password' }, status: :unauthorized
     end
