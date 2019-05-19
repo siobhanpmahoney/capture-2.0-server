@@ -9,6 +9,7 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.string :categories
       t.string :levels
       t.string :landing_page
+      t.belongs_to :app, foreign_key: true
       t.belongs_to :company, foreign_key: true
 
       t.timestamps

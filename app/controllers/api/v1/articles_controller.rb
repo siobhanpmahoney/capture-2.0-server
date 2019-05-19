@@ -43,6 +43,6 @@ class Api::V1::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:link, :title, :publication_date, tag_ids: [])
+    params.require(:article).permit(:link, :title, :type, :muse_id, :publication_date, tag_ids: [])
   end
 end

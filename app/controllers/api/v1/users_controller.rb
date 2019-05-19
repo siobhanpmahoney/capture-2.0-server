@@ -52,27 +52,12 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
+  # t.string "user_locations"
+  # t.string "user_industries"
+  # t.string "user_categories"
+  # t.string "user_levels"
+
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation, tag_ids: [], app_ids: [], note_ids: [], article_ids: [])
+    params.require(:user).permit(:username, :password, :password_confirmation, :pref_locations, :pref_industries, :pref_categories, :pref_levels, tag_ids: [], app_ids: [], note_ids: [], article_ids: [])
   end
 end
-
-
-## OLD CODE - begin
-
-##  old create:
-
-# def create
-#   @user = User.new(user_params)
-#   if @user.save
-#     @token = encode_token(user_id: @user.id) #issues token when user is registered
-#     render json: @user, status: 201
-#   else
-#     render json: {error:"Error, User not saved"}, status: :unauthorized
-#   end
-# # else
-# #   @user = User.find_by(username: user_params["username"])
-# #   render json: @user, status: 201
-#   # render json: {user: @user, token: @token}, serialzer: UserSerializer, status: 201
-#
-# end

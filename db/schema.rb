@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2019_03_24_164409) do
     t.string "link"
     t.string "title"
     t.datetime "publication_date"
+    t.string "type"
+    t.string "muse_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -126,6 +128,10 @@ ActiveRecord::Schema.define(version: 2019_03_24_164409) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.string "pref_locations"
+    t.string "pref_industries"
+    t.string "pref_categories"
+    t.string "pref_levels"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
