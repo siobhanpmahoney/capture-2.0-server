@@ -42,6 +42,6 @@ class Api::V1::JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:contents, :name, :publication_date, :muse_id, :locations, :categories, :levels, :landing_page, :company_id)
+    params.require(:job).permit(:contents, :name, :publication_date, :muse_id, :locations, :categories, :levels, :landing_page, :company_id, :app_id)
   end
 end

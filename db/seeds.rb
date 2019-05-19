@@ -55,5 +55,5 @@ job_data.each do |j|
 
   puts new_job.id
 
-  App.create(user_id: 1, job_id: new_job.id, date_saved:DateTime.now)
+  App.create(user_id: 1, job_id: new_job.id, date_saved:DateTime.now).errors.full_messages
 end

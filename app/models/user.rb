@@ -9,10 +9,10 @@ class User < ApplicationRecord
 
 
   has_many :apps
-  has_many :jobs, through: :apps
-  has_many :tags
-  has_many :notes
-  has_many :articles
+  # has_many :jobs, through: :apps
+  has_many :tags, dependent: :destroy
+  has_many :notes, dependent: :destroy
+  has_many :articles, dependent: :destroy
 
 
   alias :read_attribute_for_serialization :send
