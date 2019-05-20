@@ -1,6 +1,6 @@
 class App < ApplicationRecord
   belongs_to :user
-  belongs_to :job, optional: true
+  belongs_to :job
   has_many :interviews
 
   validates_uniqueness_of :job

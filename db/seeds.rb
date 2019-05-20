@@ -50,10 +50,15 @@ job_data.each do |j|
     c = create_company(get_company(co_museid))
   end
 
-  new_job = Job.create(contents: j["contents"], name: j["name"], publication_date: j["publication_date"], muse_id: j["id"], locations: j["locations"].map {|l| l["name"]}.join(";"),
+  new_job = Job.new(contents: j["contents"], name: j["name"], publication_date: j["publication_date"], muse_id: j["id"], locations: j["locations"].map {|l| l["name"]}.join(";"),
   categories: j["categories"].map {|c| c["name"]}.join(";"), levels: j["levels"].map {|l| l["name"]}.join(";"), landing_page: j["landing_page"], company_id: c.id)
 
-  puts new_job.id
 
-  App.create(user_id: 1, job_id: new_job.id, date_saved:DateTime.now).errors.full_messages
+  if new_job.save
+    a = App.create(user_id: 1, job_id: new_job.id, date_saved:DateTime.now)
+    new_job.update(app_id: a.id)
+  else
+    puts Job.create(contents: j["contents"], name: j["name"], publication_date: j["publication_date"], muse_id: j["id"], locations: j["locations"].map {|l| l["name"]}.join(";"),
+    categories: j["categories"].map {|c| c["name"]}.join(";"), levels: j["levels"].map {|l| l["name"]}.join(";"), landing_page: j["landing_page"], company_id: c.id).errors.full_messages
+  end
 end
