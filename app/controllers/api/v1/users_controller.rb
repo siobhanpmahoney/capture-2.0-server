@@ -2,7 +2,8 @@ class Api::V1::UsersController < ApplicationController
   skip_before_action :authorized, only: [:create] # all routes protected EXCEPT #create
 
   def profile
-    render json: { user: UserSerializer.new(current_user)}, status: :accepted
+    # render json: { user: UserSerializer.new(current_user)}, status: :accepted
+    render json: { user: {id: current_user.id, username: current_user.username, pref_locations: current_user.pref_locations, pref_industries: current_user.pref_industries, pref_categories: current_user.pref_categories, pref_levels: current_user.pref_levels}}, status: :accepted
   end
 
   def index
