@@ -5,6 +5,15 @@ class Api::V1::JobsController < ApplicationController
   end
 
   def create
+    # check if company exists
+
+    # check if params include contents
+
+    # if yes, save directly with params sent with request
+
+    # if not, make call to the Muse API to get contents
+
+
     @job = Job.new(job_params)
     if @job.save
       render json: @job, status: 201
@@ -42,6 +51,6 @@ class Api::V1::JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:contents, :name, :publication_date, :muse_id, :locations, :categories, :levels, :landing_page, :company_id, :app_id)
+    params.require(:job).permit(:contents, :name, :publication_date, :muse_id, :locations, :categories, :levels, :landing_page, :company_muse_id, :company_id, :app_id)
   end
 end
