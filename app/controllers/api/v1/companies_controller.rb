@@ -6,26 +6,10 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def create
-    puts "\n"
-    puts "\n"
-    puts "in Company#create"
-    puts "\n"
-    puts "current user?"
-    puts current_user
-    puts "\n"
-    puts "params"
-    puts params
-    puts "\n"
-    puts "\n"
-    @company = Company.new(company_params)
-    puts "\n"
-    puts "\n"
-    if @company.save
-      puts "company saved"
-      puts @company
-      puts "\n"
-      puts "\n"
-      render json: @company, status: 201
+    @company = Company.find_or_create_by(company_params)
+    if @company
+      current_user.companies << @company
+      render json: {company: @company}, status: 201
     else
       render json: {error: @company.errors.full_messages}, status: 500
     end

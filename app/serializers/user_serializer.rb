@@ -8,6 +8,7 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :apps
   has_many :jobs
+  has_many :companies
   has_many :articles
   has_many :notes
   has_many :tags

@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
+
   namespace :api do
     namespace :v1 do
 
       resources :tag_notes
       resources :tag_articles
       resources :interview_contacts
+      resources :user_companies
       resources :tags
       resources :articles
       resources :notes
