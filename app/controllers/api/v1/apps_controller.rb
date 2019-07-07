@@ -6,9 +6,9 @@ class Api::V1::AppsController < ApplicationController
   end
 
   def create
-    @app = App.new(app_params)
-    if @app.save
-      render json: @app, status: 201
+    @app = App.find_or_create_by(app_params)
+    if @app
+      render json: AppSerializer.new(@app), status: 201
     else
       render json: {error: @app.errors.full_messages}, status: 500
     end

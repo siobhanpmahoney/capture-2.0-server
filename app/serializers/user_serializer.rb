@@ -13,4 +13,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :notes
   has_many :tags
 
+
 end

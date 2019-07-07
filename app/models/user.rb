@@ -7,10 +7,10 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
 
 
-  has_many :user_companies, dependent: :destroy
+  has_many :user_companies
   has_many :companies, through: :user_companies
 
-  has_many :apps, dependent: :destroy
+  has_many :apps
   has_many :jobs, through: :apps
   has_many :tags, dependent: :destroy
   has_many :notes, dependent: :destroy

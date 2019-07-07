@@ -7,9 +7,18 @@ class Api::V1::CompaniesController < ApplicationController
 
   def create
     @company = Company.find_or_create_by(company_params)
+    puts "\n"
+    puts "\n"
     if @company
-      current_user.companies << @company
-      render json: {company: @company}, status: 201
+      puts "\n"
+      puts "\n"
+      if !current_user.companies.find {|c| c.muse_id == @company.muse_id}
+        puts "\n"
+        puts "\n"
+        current_user.companies << @company
+        puts "\n"
+      end
+      render json: CompanySerializer.new(@company), status: 201
     else
       render json: {error: @company.errors.full_messages}, status: 500
     end
@@ -44,6 +53,6 @@ class Api::V1::CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, :description, :size, :locations, :industries, :twitter, :image, :logo_image, :muse_landing_page, :muse_id, job_ids: [])
+    params.require(:company).permit(:name, :description, :size, :locations, :industries, :twitter, :image, :logo_image, :muse_landing_page, :muse_id, job_ids: [], companies_ids: [])
   end
 end
