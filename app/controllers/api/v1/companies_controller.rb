@@ -1,12 +1,30 @@
 class Api::V1::CompaniesController < ApplicationController
+
   def index
     @companies = Company.all
     render json: @companies
   end
 
   def create
+    puts "\n"
+    puts "\n"
+    puts "in Company#create"
+    puts "\n"
+    puts "current user?"
+    puts current_user
+    puts "\n"
+    puts "params"
+    puts params
+    puts "\n"
+    puts "\n"
     @company = Company.new(company_params)
+    puts "\n"
+    puts "\n"
     if @company.save
+      puts "company saved"
+      puts @company
+      puts "\n"
+      puts "\n"
       render json: @company, status: 201
     else
       render json: {error: @company.errors.full_messages}, status: 500
@@ -42,6 +60,6 @@ class Api::V1::CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, :description, :size, :locations, :industries, :twitter, :muse_id, job_ids: [])
+    params.require(:company).permit(:name, :description, :size, :locations, :industries, :twitter, :image, :logo_image, :muse_landing_page, :muse_id, job_ids: [])
   end
 end

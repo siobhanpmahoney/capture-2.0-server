@@ -14,8 +14,9 @@ class Api::V1::JobsController < ApplicationController
     # if not, make call to the Muse API to get contents
 
 
-    @job = Job.new(job_params)
-    if @job.save
+
+    @job = Job.find_or_create_by(job_params)
+    if @job
       render json: @job, status: 201
     else
       render json: {error: @job.errors.full_messages}, status: 500
