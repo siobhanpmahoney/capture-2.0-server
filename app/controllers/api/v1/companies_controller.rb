@@ -6,20 +6,20 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.find_or_create_by(company_params)
-    puts "\n"
-    puts "\n"
-    if @company
-      puts "\n"
-      puts "\n"
-      if !current_user.companies.find {|c| c.muse_id == @company.muse_id}
-        puts "\n"
-        puts "\n"
-        current_user.companies << @company
-        puts "\n"
-      end
-      render json: CompanySerializer.new(@company), status: 201
+    if Company.find_by(muse_id: company_params["muse_id"])
+      @company = Company.find_by(muse_id: company_params["muse_id"])
     else
+      @company = Company.create(company_params)
+    end
+
+    if @company
+      if !current_user.companies.find {|c| c.muse_id == @company.muse_id}
+        current_user.companies << @company
+      end
+
+      render json: CompanySerializer.new(@company), status: 201
+
+    else 
       render json: {error: @company.errors.full_messages}, status: 500
     end
   end
