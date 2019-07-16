@@ -10,8 +10,8 @@ class User < ApplicationRecord
   has_many :user_companies
   has_many :companies, through: :user_companies
 
-  has_many :apps
-  has_many :jobs, through: :apps
+  has_many :apps, dependent: :destroy
+  has_many :jobs , through: :apps #, dependent: :destroy
   has_many :tags, dependent: :destroy
   has_many :notes, dependent: :destroy
   has_many :articles, dependent: :destroy
