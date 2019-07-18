@@ -33,7 +33,7 @@ class Api::V1::AppsController < ApplicationController
   end
 
   def destroy
-    @app = App.find(app_params)
+    @app = App.find(params[:id])
     @app.destroy
     render json: @app
   end
