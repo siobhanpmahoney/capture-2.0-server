@@ -12,13 +12,13 @@ require 'json'
 
 
 
-User.create(username: "siobhan", password: "siobhan", password_confirmation: "siobhan", pref_categories: "Creative+%26+Design|Data+Science|Engineering|Project+%26+Product+Management", pref_levels: "Internship|Entry+Level", pref_locations: "Brooklyn%2C+NY|New+York%2C+NY|San+Francisco%2C+CA")
+User.create(username: "siobhan", password: "siobhan", password_confirmation: "siobhan", pref_categories: "Creative+%26+Design|Data+Science|Engineering|Project+%26+Product+Management", pref_levels: "Senior+Level|Mid+Level", pref_locations: "Boston%2C+NY|New+York%2C+NY|San+Francisco%2C+CA")
 
 
 ### function: get job data => save company, save job
 
 def job_data
-  fetch_data('https://www.themuse.com/api/public/jobs?category=Creative+%26+Design&category=Data+Science&category=Engineering&category=Project+%26+Product+Management&level=Internship&level=Entry+Level&location=Brooklyn%2C+NY&location=New+York%2C+NY&location=San+Francisco%2C+CA&page=1&descending=true')["results"]
+  fetch_data('https://www.themuse.com/api/public/jobs?&category=Engineering&category=Project+%26+Product+Management&level=Mid+Level&level=Entry+Level&location=Boston%2C+MA&location=New+York%2C+NY&location=San+Francisco%2C+CA&page=1&descending=true')["results"]
 end
 
 

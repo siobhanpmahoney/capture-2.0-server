@@ -1,7 +1,10 @@
 class Api::V1::AppsController < ApplicationController
+  skip_before_action :authorized, only: [:index]
+
 
   def index
-    @apps = App.all
+    # @apps = App.all
+    @apps = current_user.apps
     render json: @apps
   end
 
