@@ -43,7 +43,7 @@ class Api::V1::JobsController < ApplicationController
     #   end
 
 
-      render json: JobSerializer.new(@job), status: 201
+      render json: @job, status: 201
     else
       render json: {error: @job.errors.full_messages}, status: 500
     end

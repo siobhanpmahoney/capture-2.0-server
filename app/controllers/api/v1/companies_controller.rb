@@ -11,15 +11,14 @@ class Api::V1::CompaniesController < ApplicationController
     else
       @company = Company.create(company_params)
     end
-
     if @company
       if !current_user.companies.find {|c| c.muse_id == @company.muse_id}
         current_user.companies << @company
       end
+      render json: @company, status: 201
+      # render json: CompanySerializer.new(@company), status: 201
 
-      render json: CompanySerializer.new(@company), status: 201
-
-    else 
+    else
       render json: {error: @company.errors.full_messages}, status: 500
     end
   end
