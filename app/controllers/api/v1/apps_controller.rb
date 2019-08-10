@@ -9,9 +9,10 @@ class Api::V1::AppsController < ApplicationController
   end
 
   def create
+    puts params
     @app = App.find_or_create_by(app_params)
     if @app
-      render json: AppSerializer.new(app: @app), status: 201
+      render json: @app, status: 201
     else
       byebug
       render json: {error: @app.errors.full_messages}, status: 500
